@@ -229,4 +229,84 @@
         </div>
 
         <div class="card">
-            <div class="card-img" style="background-image: url('
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=500&q=80')"></div>
+            <div class="card-body">
+                <span class="badge">Vegetariano</span>
+                <h3>Plato Falafel</h3>
+                <p>6 piezas de falafel crujiente con hummus y ensalada variada.</p>
+                <span class="price-tag">6.50 €</span>
+                <button class="btn-add" onclick="addToCart('Plato Falafel', 6.50)">Añadir al pedido</button>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">Para acompañar</h2>
+    <div class="menu-grid">
+        <div class="card">
+            <div class="card-body">
+                <h3>Patatas Fritas</h3>
+                <p>Ración grande y crujiente.</p>
+                <span class="price-tag">2.50 €</span>
+                <button class="btn-add" onclick="addToCart('Patatas', 2.50)">Añadir</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h3>Refrescos 33cl</h3>
+                <p>Coca-Cola, Fanta, Aquarius o Agua.</p>
+                <span class="price-tag">1.80 €</span>
+                <button class="btn-add" onclick="addToCart('Refresco', 1.80)">Añadir</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h3>Baklava (Postre)</h3>
+                <p>Dulce tradicional de hojaldre y frutos secos.</p>
+                <span class="price-tag">3.00 €</span>
+                <button class="btn-add" onclick="addToCart('Baklava', 3.00)">Añadir</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="cart-panel" id="cart">
+    <div class="cart-total">
+        <span>Total pedido:</span>
+        <span id="total-price">0.00 €</span>
+    </div>
+    <a href="https://wa.me/34600000000?text=Hola! Querría hacer un pedido..." class="btn-order" id="whatsapp-link">
+        Finalizar por WhatsApp 💬
+    </a>
+</div>
+
+<footer>
+    <p>📍 Calle Principal 123, Tu Pueblo</p>
+    <p>⏰ Horario: 12:00 - 00:00 (Todos los días)</p>
+    <p>© 2026 Kebab Al Pueblo · Calidad Superior</p>
+</footer>
+
+<script>
+    let total = 0;
+    let items = [];
+
+    function addToCart(name, price) {
+        total += price;
+        items.push(name);
+        
+        // Actualizar visualmente el precio
+        document.getElementById('total-price').innerText = total.toFixed(2) + ' €';
+        
+        // Actualizar el enlace de WhatsApp con el pedido real
+        const message = encodeURIComponent(`¡Hola! Me gustaría pedir:\n- ${items.join('\n- ')}\n\nTotal: ${total.toFixed(2)}€`);
+        document.getElementById('whatsapp-link').href = `https://wa.me/34600000000?text=${message}`;
+
+        // Pequeña animación de feedback en el carrito
+        const cart = document.getElementById('cart');
+        cart.style.transform = 'scale(1.05)';
+        setTimeout(() => cart.style.transform = 'scale(1)', 200);
+    }
+</script>
+
+</body>
+</html>
