@@ -1,312 +1,185 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kebab Al Pueblo | Gourmet</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Fonda de Can Parellada | 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #e63946;
-            --secondary: #2a9d8f;
-            --dark: #1d3557;
-            --light: #f1faee;
-            --accent: #ffb703;
+            --verde-obscuro: #2d3e33;
+            --crema: #fdfaf5;
+            --dorado: #b5945d;
+            --texto: #333;
+            --blanco: #ffffff;
         }
 
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-            color: var(--dark);
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--crema); color: var(--texto); line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--verde-obscuro); }
 
-        /* --- Header & Hero --- */
-        header {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1561651823-34feb02250e4?auto=format&fit=crop&w=1000&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 100px 20px;
-            text-align: center;
-        }
+        /* Navegación */
+        nav { background: var(--blanco); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--verde-obscuro); text-transform: uppercase; letter-spacing: 2px; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { text-decoration: none; color: var(--texto); font-weight: 400; font-size: 0.9rem; transition: 0.3s; }
+        nav ul li a:hover { color: var(--dorado); }
 
-        header h1 {
-            font-size: 3rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        /* Hero / Inicio */
+        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80') no-repeat center center/cover; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 0 20px; }
+        .hero h1 { color: white; font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; max-width: 600px; font-weight: 300; }
 
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
+        section { padding: 80px 10%; }
+        .container { max-width: 1200px; margin: auto; }
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; }
+        .section-title::after { content: ''; width: 60px; height: 3px; background: var(--dorado); display: block; margin: 15px auto; }
 
-        /* --- Layout --- */
-        .container {
-            max-width: 1100px;
-            margin: -50px auto 40px;
-            padding: 0 20px;
-        }
+        /* Sobre Nosotros */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .text-box { padding: 20px; }
+        .image-placeholder { background: #ddd; height: 400px; border-radius: 8px; overflow: hidden; }
+        .image-placeholder img { width: 100%; height: 100%; object-fit: cover; }
 
-        .section-title {
-            text-align: center;
-            margin: 40px 0 20px;
-            font-size: 1.8rem;
-            position: relative;
-        }
+        /* Gastronomía - Menús */
+        .menu-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .menu-card { background: white; padding: 40px; border-radius: 5px; border: 1px solid #eee; text-align: center; }
+        .price { font-size: 1.5rem; color: var(--dorado); margin: 15px 0; font-weight: bold; }
+        .menu-img { width: 100%; max-width: 400px; margin-top: 20px; border: 1px solid #ddd; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 4px;
-            background: var(--primary);
-            margin: 10px auto;
-            border-radius: 2px;
-        }
+        /* Calçotada */
+        .calcota-box { background: var(--verde-obscuro); color: white; padding: 60px; border-radius: 15px; text-align: center; }
+        .calcota-box h2 { color: var(--dorado); }
+        .pdf-placeholder { width: 100%; max-width: 700px; margin: 30px auto; background: white; padding: 10px; }
 
-        /* --- Grid del Menú --- */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
+        /* Comuniones */
+        .iframe-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; }
+        .iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        .card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
+        /* Contacto */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .info-list { list-style: none; }
+        .info-list li { margin-bottom: 20px; }
+        .info-list b { color: var(--dorado); display: block; text-transform: uppercase; font-size: 0.8rem; }
 
-        .card:hover {
-            transform: translateY(-10px);
-        }
+        footer { background: var(--verde-obscuro); color: white; text-align: center; padding: 40px 0; margin-top: 50px; border-top: 4px solid var(--dorado); }
 
-        .card-img {
-            height: 180px;
-            background-color: #ddd;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .card-body {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.3rem;
-        }
-
-        .card p {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .price-tag {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .btn-add {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-            width: 100%;
-        }
-
-        .btn-add:hover {
-            background: #c1121f;
-        }
-
-        /* --- Carrito Flotante --- */
-        .cart-panel {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            width: 300px;
-            z-index: 1000;
-            border: 2px solid var(--primary);
-        }
-
-        .cart-total {
-            font-size: 1.2rem;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-
-        .btn-order {
-            display: block;
-            text-align: center;
-            background: var(--secondary);
-            color: white;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: bold;
-        }
-
-        footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-        }
-
-        .badge {
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 600px) {
-            .cart-panel { width: calc(100% - 40px); right: 20px; }
+        @media (max-width: 768px) {
+            .grid, .menu-container, .contact-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Kebab Al Pueblo</h1>
-    <p>Sabor auténtico en cada bocado ✨</p>
-</header>
+<nav>
+    <div class="logo">Can Parellada</div>
+    <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#gastronomia">Gastronomía</a></li>
+        <li><a href="#calcots">Calçotada</a></li>
+        <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+</nav>
 
-<div class="container">
-    
-    <h2 class="section-title">Nuestras Especialidades</h2>
-    <div class="menu-grid">
-        <div class="card">
-            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=500&q=80')"></div>
-            <div class="card-body">
-                <span class="badge">Popular</span>
-                <h3>Kebab Clásico</h3>
-                <p>Carne asada, lechuga fresca, tomate y nuestra salsa secreta.</p>
-                <span class="price-tag">5.00 €</span>
-                <button class="btn-add" onclick="addToCart('Kebab Clásico', 5.00)">Añadir al pedido</button>
+<section id="inicio" class="hero">
+    <h1>La Fonda de Can Parellada</h1>
+    <p>Tradición, elegancia y la mejor gastronomía catalana en el corazón de Masquefa.</p>
+</section>
+
+<section id="nosotros">
+    <div class="container">
+        <h2 class="section-title">Nuestra Historia</h2>
+        <div class="grid">
+            <div class="text-box">
+                <p>Nuestra Masía es un rincón gastronómico único situado en un entorno privilegiado. Con una estructura que data de 1930, destacamos por nuestro patio central ornamentado y nuestro emblemático reloj de sol.</p>
+                <br>
+                <p>Ofrecemos un ambiente cálido y familiar, donde el respeto por el producto local es nuestra máxima prioridad.</p>
             </div>
-        </div>
-
-        <div class="card">
-            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=500&q=80')"></div>
-            <div class="card-body">
-                <span class="badge">Recomendado</span>
-                <h3>Durum Mixto</h3>
-                <p>Pan de tortilla enrollado con carne mixta, vegetales y doble salsa.</p>
-                <span class="price-tag">5.50 €</span>
-                <button class="btn-add" onclick="addToCart('Durum Mixto', 5.50)">Añadir al pedido</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=500&q=80')"></div>
-            <div class="card-body">
-                <span class="badge">Vegetariano</span>
-                <h3>Plato Falafel</h3>
-                <p>6 piezas de falafel crujiente con hummus y ensalada variada.</p>
-                <span class="price-tag">6.50 €</span>
-                <button class="btn-add" onclick="addToCart('Plato Falafel', 6.50)">Añadir al pedido</button>
+            <div class="image-placeholder">
+                <img src="https://images.unsplash.com/photo-1550966841-3ee3233557d4?auto=format&fit=crop&q=80" alt="Interior Masia">
             </div>
         </div>
     </div>
+</section>
 
-    <h2 class="section-title">Para acompañar</h2>
-    <div class="menu-grid">
-        <div class="card">
-            <div class="card-body">
-                <h3>Patatas Fritas</h3>
-                <p>Ración grande y crujiente.</p>
-                <span class="price-tag">2.50 €</span>
-                <button class="btn-add" onclick="addToCart('Patatas', 2.50)">Añadir</button>
+<section id="gastronomia" style="background-color: #f4f4f4;">
+    <div class="container">
+        <h2 class="section-title">Nuestra Gastronomía</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Cocina de mercado, equilibrada y llena de detalles. Contamos con salones privados para todo tipo de celebraciones.</p>
+        
+        <div class="menu-container">
+            <div class="menu-card">
+                <h3>Menú Diario</h3>
+                <p>Disponible de Martes a Viernes</p>
+                <p class="price">22,00 €</p>
+                <small>(Incluye agua mineral y pan)</small>
+                <br>
+                <img src="menu_diario_imagen.jpg" alt="Menú Diario" class="menu-img">
             </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h3>Refrescos 33cl</h3>
-                <p>Coca-Cola, Fanta, Aquarius o Agua.</p>
-                <span class="price-tag">1.80 €</span>
-                <button class="btn-add" onclick="addToCart('Refresco', 1.80)">Añadir</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h3>Baklava (Postre)</h3>
-                <p>Dulce tradicional de hojaldre y frutos secos.</p>
-                <span class="price-tag">3.00 €</span>
-                <button class="btn-add" onclick="addToCart('Baklava', 3.00)">Añadir</button>
+
+            <div class="menu-card">
+                <h3>Fin de Semana y Festivos</h3>
+                <p>Nuestra mejor selección para tus días libres</p>
+                <p class="price">38,00 €</p>
+                <small>(Incluye agua, vino de la casa y pan)</small>
+                <br>
+                <img src="menu_finde_imagen.jpg" alt="Menú Fin de Semana" class="menu-img">
             </div>
         </div>
     </div>
+</section>
 
-</div>
-
-<div class="cart-panel" id="cart">
-    <div class="cart-total">
-        <span>Total pedido:</span>
-        <span id="total-price">0.00 €</span>
+<section id="calcots">
+    <div class="container">
+        <div class="calcota-box">
+            <h2 class="section-title" style="color: var(--dorado);">Calçotada 2026</h2>
+            <p>Disfruta de la auténtica tradición en nuestra terraza al aire libre.</p>
+            <div class="pdf-placeholder">
+                <p style="color: #333; padding: 20px;">[ Aquí se visualiza el Menú Calçotada 2026 ]</p>
+                <img src="menu_calçotada_preview.jpg" alt="Menú Calçotada" style="width: 100%;">
+            </div>
+            <p><small>* Menú infantil gratuito hasta los 12 años (Plat combinat de macarrons o escalopa).</small></p>
+        </div>
     </div>
-    <a href="https://wa.me/34600000000?text=Hola! Querría hacer un pedido..." class="btn-order" id="whatsapp-link">
-        Finalizar por WhatsApp 💬
-    </a>
-</div>
+</section>
+
+<section id="eventos">
+    <div class="container">
+        <h2 class="section-title">Comuniones 2026</h2>
+        <p style="text-align: center; margin-bottom: 30px;">Presentamos nuestra propuesta de menús para celebraciones. Nos adaptamos a vuestros gustos.</p>
+        <div class="iframe-container">
+            <iframe src="https://docs.google.com/viewerng/viewer?url=https://primary.jwwb.nl/plugin-documents/3f26239eb9830c9826dec954967f1fdd261edb3a.pdf&embedded=true"></iframe>
+        </div>
+    </div>
+</section>
+
+<section id="contacto" style="background-color: var(--blanco);">
+    <div class="container">
+        <h2 class="section-title">Contacto y Reservas</h2>
+        <div class="contact-grid">
+            <div>
+                <ul class="info-list">
+                    <li><b>Dirección:</b> Avda. Can Parellada, 21. 08783 Masquefa, Barcelona.</li>
+                    <li><b>Teléfono Fijo:</b> 938 423 944</li>
+                    <li><b>WhatsApp:</b> 677 191 127</li>
+                    <li><b>Email:</b> info@lafondadecanparellada.com</li>
+                </ul>
+            </div>
+            <div>
+                <p><b>Horario:</b> Lunes cerrado. <br> Martes a Domingo: 13:00h - 17:00h.</p>
+                <p style="margin-top: 20px; color: var(--dorado); font-style: italic;">Se recomienda reserva previa para fines de semana.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <footer>
-    <p>📍 Calle Principal 123, Tu Pueblo</p>
-    <p>⏰ Horario: 12:00 - 00:00 (Todos los días)</p>
-    <p>© 2026 Kebab Al Pueblo · Calidad Superior</p>
+    <p>© 2025 - 2026 La Fonda de Can Parellada</p>
 </footer>
-
-<script>
-    let total = 0;
-    let items = [];
-
-    function addToCart(name, price) {
-        total += price;
-        items.push(name);
-        
-        // Actualizar visualmente el precio
-        document.getElementById('total-price').innerText = total.toFixed(2) + ' €';
-        
-        // Actualizar el enlace de WhatsApp con el pedido real
-        const message = encodeURIComponent(`¡Hola! Me gustaría pedir:\n- ${items.join('\n- ')}\n\nTotal: ${total.toFixed(2)}€`);
-        document.getElementById('whatsapp-link').href = `https://wa.me/34600000000?text=${message}`;
-
-        // Pequeña animación de feedback en el carrito
-        const cart = document.getElementById('cart');
-        cart.style.transform = 'scale(1.05)';
-        setTimeout(() => cart.style.transform = 'scale(1)', 200);
-    }
-</script>
 
 </body>
 </html>
